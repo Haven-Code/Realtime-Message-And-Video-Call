@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html style="height: 100%;width: 100%;">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Chat</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/chatPage.css">
+	<link rel="stylesheet" href="assets/css/loading.css">
+
+	<script>
+		const user = "<%= user._id %>";
+		const username = "<%= user.username %>";
+		const friendList = '<%- JSON.stringify(user.friends) %>'
+	</script>
+
+	<script src="https://kit.fontawesome.com/ee19bf5d92.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<div class="container-fluid h-100">
+		<div class="row justify-content-center h-100">
+			<div class="col-md-4 col-xl-3 chat">
+
+				<div class="card mb-sm-3 mb-md-0 contacts_card">
+
+					<div class="card-header">
+						<div class="input-group">
+							<input type="text" placeholder="Search..." name="" class="form-control search">
+							<div class="input-group-prepend">
+								<span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="card-body contacts_body">
+
+						<div class="listFr">
+							<ul class="contacts"></ul>
+						</div>
+
+						<div id="overlay">
+							<div class="text-center">
+								<div class="lds-heart ">
+									<div></div>
+								</div>
+								<br>
+								Loading ....
+							</div>
+						</div>
+
+					</div>
+
+					<div class="card-footer">
+						<div class="row">
+
+							<div class="col-2">
+								<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+									class="rounded-circle user_img_msg">
+							</div>
+
+							<div class="col-8">
+								<%= user.fullname %>
+							</div>
+
+							<div class="col-2">
+								<i class="fas fa-cog"></i>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-md-8 col-xl-6 chat">
+
+				<div class="card defaultBox">
+					<div class="my-auto text-center">
+						<p class="notification">Chọn 1 người dể nhắn tin !</p>
+					</div>
+				</div>
+
+				<div class="card chatBox">
+					<div class="card-header msg_head">
+						<div class="d-flex bd-highlight">
+							<div class="img_cont">
+								<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+									class="rounded-circle user_img">
+								<span class="online_icon chatBoxIcon"></span>
+							</div>
+							<div class="user_info">
+								<span class="chatBoxName">Chat with Khalid</span>
+								<p class="chatBoxMessageCounter">1767 Messages</p>
+							</div>
+							<div class="video_cam">
+								<span class="videoCallButton"><i class="fas fa-video"></i></span>
+								<span><i class="fas fa-phone"></i></span>
+							</div>
+						</div>
+
+						<span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+
+						<div class="action_menu">
+							<ul>
+								<li><i class="fas fa-user-circle"></i> View profile</li>
+								<li><i class="fas fa-users"></i> Add to close friends</li>
+								<li><i class="fas fa-plus"></i> Add to group</li>
+								<li><i class="fas fa-ban"></i> Block</li>
+							</ul>
+						</div>
+
+					</div>
+
+					<div class="card-body msg_card_body chatShowBox">
+
+						<div class="d-flex justify-content-start mb-4">
+							<div class="img_cont_msg">
+								<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+									class="rounded-circle user_img_msg">
+							</div>
+
+							<div class="msg_cotainer">
+								Hi, how are you samim?
+								<span class="msg_time">8:40 AM, Today</span>
+							</div>
+
+						</div>
+
+						<div class="d-flex justify-content-end mb-4">
+							<div class="msg_cotainer_send">
+								Hi Khalid i am good tnx how about you?
+								<span class="msg_time_send">8:55 AM, Today</span>
+							</div>
+							<div class="img_cont_msg">
+								<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+									class="rounded-circle user_img_msg">
+							</div>
+						</div>
+
+					</div>
+
+					<div class="card-footer">
+						<form class="textBox">
+							<input type="hidden" class="friendID" value="" />
+							<div class="input-group">
+								<div class="input-group-append">
+									<span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+								</div>
+								<textarea name="" class="form-control type_msg"
+									placeholder="Type your message..."></textarea>
+								<div class="input-group-append">
+									<button class="input-group-text send_btn">
+										<i class="fas fa-location-arrow"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Clling Modal -->
+	<div class="modal fade" id="callingModal" tabindex="-1" role="dialog" aria-labelledby="callingModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-body">
+					<p class="modalCaller"></p>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger declineCall">Từ Chối</button>
+					<button type="button" class="btn btn-success answerCall">Trả Lời</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- End Calling Modal-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
+	<script src="socket.io/socket.io.js"></script>
+	<script src="assets/js/chatPageService.js"></script>
+</body>
+
+</html>

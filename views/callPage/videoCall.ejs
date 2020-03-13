@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<link rel="manifest" href="/assets/manifest.json">
+	<title>Call</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/css/bt4-btn-circle.css">
+	<link rel="stylesheet" href="/assets/css/callPage.css">
+
+	<script src="https://kit.fontawesome.com/ee19bf5d92.js" crossorigin="anonymous"></script>
+	<script>
+		const user = "<%= user._id %>";
+		const username = "<%= user.username %>";
+		const callTo = "<%= callTo %>";
+		const typeCall = "<%= typeCall %>"
+	</script>
+</head>
+
+<body>
+
+	<div class="videoFrame">
+
+		<div class="callingScreen">
+			<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle avata_calling"/>
+			<br><br>
+			<h3 class="callText">Callingggg</h3>
+		</div>
+
+		<div class="remoteStream">
+			<video id="videoRemoteStream" ></video>
+		</div>
+
+		<div class="localStream">
+			<video id="videoLocalStream" ></video>
+		</div>
+
+		<div class="callControlButton">
+
+			<button class="btn btn-dark btn-circle btn-lg btnCallControl" title="Fullscreen">
+				<i class="fas fa-expand-arrows-alt"></i>
+			</button>
+
+			<button class="btn btn-dark btn-circle btn-lg btnCallControl" title="Mute All">
+				<i class="fas fa-volume-mute"></i>
+			</button>
+
+			<button class="btn btn-dark btn-circle btn-lg btnCallControl" title="Mute Mic">
+				<i class="fas fa-microphone-alt-slash"></i>
+			</button>
+
+			<button class="btn btn-danger btn-circle btn-lg btnCallControl endCallButton" title="End Call">
+				<i class="fas fa-phone-slash"></i>
+			</button>
+
+		</div>
+
+		<div class="endCallControlButton">
+
+			<button class="btn btn-dark btn-lg btnCallControl" title="Fullscreen">
+				<i class="fas fa-times"> Đóng cửa Sổ</i>
+			</button>
+
+		</div>
+
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/assets/js/callService.js"></script>
+
+</body>
+
+</html>
